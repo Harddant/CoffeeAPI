@@ -1,0 +1,33 @@
+@CoffeeAPI_HostAddress = http://localhost:5172
+
+### Get all coffees
+GET {{CoffeeAPI_HostAddress}}/api/coffee
+Accept: application/json
+
+### Get coffee by ID
+GET {{CoffeeAPI_HostAddress}}/api/coffee/1
+Accept: application/json
+
+### Get all coffee types
+GET {{CoffeeAPI_HostAddress}}/api/coffeetype
+Accept: application/json
+
+### Get coffee type by ID
+GET {{CoffeeAPI_HostAddress}}/api/coffeetype/1
+Accept: application/json
+
+### Get all ingredients
+GET {{CoffeeAPI_HostAddress}}/api/ingredient
+Accept: application/json
+
+### Get ingredient by ID
+GET {{CoffeeAPI_HostAddress}}/api/ingredient/1
+Accept: application/json
+
+### Get all coffee-ingredient relationships
+GET {{CoffeeAPI_HostAddress}}/api/coffeeingredient
+Accept: application/json
+
+### Get coffee of the day
+GET {{CoffeeAPI_HostAddress}}/api/coffeeoftheday
+Accept: application/json
