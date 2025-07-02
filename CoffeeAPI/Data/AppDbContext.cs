@@ -12,7 +12,6 @@ namespace CoffeeAPI.Data
 
         public DbSet<Coffee> Coffees { get; set; }
         public DbSet<CoffeeType> CoffeeTypes { get; set; }
-
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<CoffeeIngredient> CoffeeIngredients { get; set; }
         public DbSet<CoffeeOfTheDay> CoffeeOfTheDay { get; set; }

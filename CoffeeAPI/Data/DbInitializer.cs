@@ -10,11 +10,15 @@ namespace CoffeeAPI.Data
                 return;
 
             // Coffee Types
-            var espressoType = new CoffeeType { Name = "Espresso" };
-            var latteType = new CoffeeType { Name = "Latte" };
-            var icedType = new CoffeeType { Name = "Iced" };
+            var coffeeTypes = new[]
+            {
+                new CoffeeType { Name = "Hot" },
+                new CoffeeType { Name = "Iced" },
+                new CoffeeType { Name = "Espresso" },
+                new CoffeeType { Name = "Latte" },
+            };
 
-            context.CoffeeTypes.AddRange(espressoType, latteType, icedType);
+            context.CoffeeTypes.AddRange(coffeeTypes);
 
             // Ingredients
             var espressoShot = new Ingredient { Name = "Espresso Shot" };
@@ -31,8 +35,8 @@ namespace CoffeeAPI.Data
                 context,
                 "Classic Espresso",
                 "Strong and small",
-                "https://imgur.com/a/3gvY24M",
-                espressoType,
+                "https://i.imgur.com/pE0dCfL.jpeg",
+                coffeeTypes[0],
                 espressoShot
             );
 
@@ -41,7 +45,7 @@ namespace CoffeeAPI.Data
                 "Vanilla Latte",
                 "Sweet and milky",
                 "",
-                latteType,
+                coffeeTypes[1],
                 espressoShot, milk, vanilla
             );
 
@@ -49,8 +53,8 @@ namespace CoffeeAPI.Data
                 context,
                 "Iced Caramel Latte",
                 "Chilled and sweet",
-                "https://imgur.com/a/61PzNNG",
-                icedType,
+                "https://i.imgur.com/QKWOtg9.jpeg",
+                coffeeTypes[1],
                 espressoShot, milk, caramel, ice
             );
 
@@ -59,7 +63,7 @@ namespace CoffeeAPI.Data
                 "Sweet Espresso",
                 "With sugar kick",
                 "",
-                espressoType,
+                coffeeTypes[2],
                 espressoShot, sugar
             );
 

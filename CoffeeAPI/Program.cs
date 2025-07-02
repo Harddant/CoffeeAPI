@@ -11,6 +11,17 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
 });
 
+// Add CORS services
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowExpoApp", policy =>
+    {
+        policy.AllowAnyOrigin()     // For development - allows any origin
+            .AllowAnyMethod()     // Allows GET, POST, PUT, DELETE, etc.
+            .AllowAnyHeader();    // Allows any headers
+    });
+});
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -19,6 +30,9 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
     DbInitializer.Seed(db);
 }
+
+// Enable CORS - THIS MUST BE BEFORE MapControllers()
+app.UseCors("AllowExpoApp");
 
 app.MapControllers();
 app.Run();
