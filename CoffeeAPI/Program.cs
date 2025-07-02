@@ -1,4 +1,5 @@
 using CoffeeAPI.Data;
+using CoffeeAPI.Data.Seeders;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,7 +32,7 @@ using (var scope = app.Services.CreateScope())
     DbInitializer.Seed(db);
 }
 
-// Enable CORS - THIS MUST BE BEFORE MapControllers()
+
 app.UseCors("AllowExpoApp");
 
 app.MapControllers();
