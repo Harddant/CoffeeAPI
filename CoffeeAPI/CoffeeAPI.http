@@ -31,3 +31,5 @@ Accept: application/json
 ### Get coffee of the day
 GET {{CoffeeAPI_HostAddress}}/api/coffeeoftheday
 Accept: application/json
+
+

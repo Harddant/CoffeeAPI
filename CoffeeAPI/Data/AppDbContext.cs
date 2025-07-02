@@ -15,6 +15,7 @@ namespace CoffeeAPI.Data
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<CoffeeIngredient> CoffeeIngredients { get; set; }
         public DbSet<CoffeeOfTheDay> CoffeeOfTheDay { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
