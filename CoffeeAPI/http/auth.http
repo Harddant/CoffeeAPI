@@ -1,0 +1,22 @@
+﻿@CoffeeAPI_HostAddress = http://localhost:5172
+
+### Register new user
+POST {{CoffeeAPI_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "testuser@example.com",
+  "password": "TestPassword123!"
+}
+
+###
+
+### Login user
+POST {{CoffeeAPI_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "TestPassword123!"
+}
