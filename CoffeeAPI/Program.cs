@@ -1,6 +1,9 @@
 using CoffeeAPI.Data;
 using CoffeeAPI.Data.Seeders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,11 +20,27 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowExpoApp", policy =>
     {
-        policy.AllowAnyOrigin()     // For development - allows any origin
-            .AllowAnyMethod()     // Allows GET, POST, PUT, DELETE, etc.
-            .AllowAnyHeader();    // Allows any headers
+        policy.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
     });
 });
+
+// Add JWT Authentication
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                .GetBytes(builder.Configuration.GetSection("Jwt:Key").Value!)),
+            ValidateIssuer = true,
+            ValidIssuer = builder.Configuration.GetSection("Jwt:Issuer").Value,
+            ValidateAudience = true,
+            ValidAudience = builder.Configuration.GetSection("Jwt:Audience").Value
+        };
+    });
 
 var app = builder.Build();
 
@@ -32,8 +51,8 @@ using (var scope = app.Services.CreateScope())
     DbInitializer.Seed(db);
 }
 
-
 app.UseCors("AllowExpoApp");
-
+app.UseAuthentication();  // Add this
+app.UseAuthorization();   // Add this
 app.MapControllers();
 app.Run();
